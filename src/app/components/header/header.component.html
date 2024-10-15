@@ -3,19 +3,19 @@
         <a routerLink="" class="logo">Food Corner</a>
         <nav>
             <ul>
-                <li>
+                <li *ngIf="!isUserAuthenticated">
                     <a routerLink="login">Login</a>
                 </li>
-                <li class="menu-container">
-                    <a routerLink="dashboard">Dashboard</a>
+                <li *ngIf="isUserAuthenticated" class="menu-container">
+                    <a routerLink="dashboard">{{user.name}}</a>
                     <div class="menu">
                         <a routerLink="profile">Profile</a>
                         <a routerLink="order">Orders</a>
-                        <a routerLink="logout">Logout</a>
+                        <a (click)="logout()">Logout</a>
                     </div>
                 </li>
                 <li>
-                    <a routerLink="cart">Cart <span>3</span></a>
+                    <a routerLink="cart">Cart <span *ngIf="cartQuantity">{{cartQuantity}}</span></a>
                 </li>
             </ul>
         </nav>
